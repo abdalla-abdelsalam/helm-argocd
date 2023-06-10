@@ -10,9 +10,9 @@ pipeline {
 
   environment {
     dockerImage = ''
-    registry = "AbdallaAbdelsalam/app"
+    registry = "abdallaabdelsalam/app"
     registryCredential = 'docker-hub-id'
-    pipelineEmail = 'abdallahmahdy01@gmail.com'
+    pipelineEmail = 'testingfeature101@gmail.com'
 
   }
 
