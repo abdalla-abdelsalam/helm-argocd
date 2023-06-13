@@ -1,10 +1,9 @@
-
-
+# Wow Such Program 
 Table of Contents
 ==================
 
-- [Table of Contents](#table-of-contents)
 - [Wow Such Program](#wow-such-program)
+- [Table of Contents](#table-of-contents)
   - [Description](#description)
   - [Prerequisites](#prerequisites)
   - [Build and Run](#build-and-run)
@@ -17,7 +16,7 @@ Table of Contents
   - [Argocd](#argocd)
 
 
-# Wow Such Program 
+
 ## Description 
 
 
