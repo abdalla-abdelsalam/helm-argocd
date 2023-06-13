@@ -6,7 +6,7 @@ metadata:
     app: {{ .Release.Name }}
     component: mysql
 spec:
-  replicas: 1
+  replicas: 2
   serviceName: {{ .Release.Name }}-mysql
   selector:
     matchLabels:
