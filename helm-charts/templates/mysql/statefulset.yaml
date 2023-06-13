@@ -1,0 +1,62 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{ .Release.Name }}-mysql
+  labels:
+    app: {{ .Release.Name }}
+    component: mysql
+spec:
+  replicas: 1
+  serviceName: {{ .Release.Name }}-mysql
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}
+      component: mysql
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}
+        component: mysql
+    spec:
+      containers:
+        - name: mysql
+          image: mysql:latest
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Release.Name }}-mysql-secrets
+                  key: root-password
+            - name: MYSQL_USER
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Release.Name }}-mysql-secrets
+                  key: username
+            - name: MYSQL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Release.Name }}-mysql-secrets
+                  key: password
+          ports:
+            - containerPort: 3306
+          volumeMounts:
+            - name: mysql-data
+              mountPath: /var/lib/mysql
+              subPath: {{ .Release.Name }}-data
+      volumes:
+        - name: mysql-data
+          persistentVolumeClaim:
+            claimName: mysql-pv-claim   
+  # volumeClaimTemplates:
+  #   - metadata:
+  #       name: mysql-data
+  #       labels:
+  #         app: {{ .Release.Name }}
+  #         component: mysql
+  #     spec:
+  #       accessModes: [ "ReadWriteOnce" ]
+  #       storageClassName: standard
+  #       volumeName: mysql-pv
+  #       resources:
+  #         requests:
+  #           storage: {{ .Values.persistence.size }}
