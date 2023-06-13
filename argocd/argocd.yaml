@@ -9,14 +9,12 @@ spec:
     namespace: default
   project: default
   source:
-    repoURL: 'https://github.com/your-username/your-repo'
-    path: helm
+    repoURL: 'https://github.com/abdalla-abdelsalam/internship-challenge'
+    path: helm-charts
     targetRevision: HEAD
     helm:
       valueFiles:
         - values.yaml
-    directory:
-      recurse: true
   syncPolicy:
     automated:
       prune: true
